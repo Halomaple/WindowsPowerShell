@@ -35,6 +35,8 @@ function Start-Up {
         s [keywords] - 'Search keywords usering StackOverflow'
 
     Misc:
+        d - 'Download file'
+        dm - 'Download multiple files'
         commands - 'Show Commands'
         clipc - 'Clip Current Path'
         k - 'Kill process'
@@ -146,6 +148,14 @@ function New-StackOverflow {
 
 
 ## Misc
+function Start-DownloadFile {
+    Start-BitsTransfer $args[0]
+}
+
+function Start-DownloadMultipleFiles {
+    Import-CSV $args[0] | Start-BitsTransfer
+}
+
 function Start-ShowCommands {
 	Start-Up
 }
