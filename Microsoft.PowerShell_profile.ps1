@@ -37,6 +37,8 @@ New-Alias -name g -value New-Google -description "Google" -option ReadOnly
 New-Alias -name s -value New-StackOverflow -description "StackOverflow" -option ReadOnly
 
 ## Misc
+New-Alias -name d -value Start-DownloadFile -description "Download file" -option ReadOnly
+New-Alias -name dm -value Start-DownloadMultipleFiles -description "Download multiple files" -option ReadOnly
 New-Alias -name commands -value Start-ShowCommands -description "Show Commands" -option ReadOnly
 New-Alias -name clipc -value Start-ClipCurrentPath -description "Clip Current Path" -option ReadOnly
 New-Alias -name k -value Start-KillProcess -description "Kill process" -option ReadOnly
