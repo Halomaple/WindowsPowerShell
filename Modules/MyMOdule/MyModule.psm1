@@ -44,7 +44,7 @@ function Start-Up {
         s [keywords] - 'Search keywords usering StackOverflow'
 
     Misc:
-        cat - 'Cat file content in Unicode format'
+        ca - 'Cat file content in Unicode format'
         d - 'Download file'
         dm - 'Download multiple files'
         commands - 'Show Commands'
@@ -229,7 +229,7 @@ function New-StackOverflow {
 
 ## Misc
 function Start-CatFileContent {
-    Get-Content $args[0] -Encoding Unicode
+    Get-Content $args[0] -Encoding UTF8
 }
 
 function Start-DownloadFile {
