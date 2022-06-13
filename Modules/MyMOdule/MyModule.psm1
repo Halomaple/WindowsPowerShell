@@ -1,4 +1,4 @@
-$ProjectsFolder = "~\projects"
+$ProjectsFolder = "~\Projects"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
 $LocalIP = "$Env:LocalIP"
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
