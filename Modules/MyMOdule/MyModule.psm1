@@ -1,7 +1,7 @@
 $ProjectsFolder = "~\Projects"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
 $LocalIP = "$Env:LocalIP"
-$Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+$Chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
 function Start-Up {
