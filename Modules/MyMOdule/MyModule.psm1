@@ -198,6 +198,9 @@ function New-OpenTerminologyInBrowser {
 
 function New-OpenW3SearchInBrowser {
     $url = $Env:W3_SEARCH + $($args[0])
+    if ($args[1]) {
+        $url = $url + '%20' + $($args[1])
+    }
     Write-Host "Opened $url in browser"
     & $Chrome $url
 }
