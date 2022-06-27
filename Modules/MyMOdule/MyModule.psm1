@@ -34,6 +34,8 @@ function Start-Up {
         gitlab - 'Gitlab'
         mail - 'Mail'
         open [url] - 'Open url in browser'
+        t [terminology] - 'Open terminology in browser'
+        w [keyword] - 'Open w3 search in browser'
 
     Search:
         baidu [keywords] - 'Search keywords using Baidu'
@@ -75,7 +77,7 @@ function Start-EventViewer {
 }
 
 function Start-LoggingEvents {
-    Get-Eventlog -LogName Application -Newest $args[0] -Source *$args[1]* | Select-Object Index, EntryType, InstanceId, Message | format-list
+    Get-Eventlog -LogName Application -Newest *$args[0]* -Source *$args[1]* | Select-Object Index, EntryType, InstanceId, Message | format-list
 }
 
 function Start-ClearEventLogs () {
@@ -184,6 +186,18 @@ function New-Mail {
 
 function New-OpenUrlInBrowser {
     $url = "http://$($args[0])"
+    Write-Host "Opened $url in browser"
+    & $Chrome $url
+}
+
+function New-OpenTerminologyInBrowser {
+    $url = $Env:TERMINOLOGY + $($args[0])
+    Write-Host "Opened $url in browser"
+    & $Chrome $url
+}
+
+function New-OpenW3SearchInBrowser {
+    $url = $Env:W3_SEARCH + $($args[0])
     Write-Host "Opened $url in browser"
     & $Chrome $url
 }

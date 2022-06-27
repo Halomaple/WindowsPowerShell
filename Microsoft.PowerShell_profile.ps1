@@ -9,7 +9,6 @@ New-Alias -name ev -value Start-EventViewer -description "Open Event Viewer" -op
 New-Alias -name log -value Start-LoggingEvents -description "Logging Events" -option ReadOnly
 New-Alias -name clearlog -value Start-ClearEventLogs -description "Clear Event Logs" -option ReadOnly
 
-
 ## VMs
 New-Alias -name u1 -value Start-LogonUbuntu1 -description "Logon Ubuntu 1 machine" -option ReadOnly
 New-Alias -name u2 -value Start-LogonUbuntu2 -description "Logon Ubuntu 2 machine" -option ReadOnly
@@ -27,6 +26,8 @@ New-Alias -name gitlab -value New-Gitlab -description "Gitlab" -option ReadOnly
 New-Alias -name github -value New-Github -description "Github" -option ReadOnly
 New-Alias -name mail -value New-Mail -description "Mail" -option ReadOnly
 New-Alias -name open -value New-OpenUrlInBrowser -description "Open url in browser" -option ReadOnly
+New-Alias -name t -value New-OpenTerminologyInBrowser -description "Open terminology in browser" -option ReadOnly
+New-Alias -name w -value New-OpenW3SearchInBrowser -description "Open w3 search in browser" -option ReadOnly
 
 ## Search
 New-Alias -name baidu -value New-Baidu -description "Baidu" -option ReadOnly
