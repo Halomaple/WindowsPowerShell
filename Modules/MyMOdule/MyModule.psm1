@@ -191,15 +191,15 @@ function New-OpenUrlInBrowser {
 }
 
 function New-OpenTerminologyInBrowser {
-    $url = $Env:TERMINOLOGY + $($args[0])
+    $url = $Env:TERMINOLOGY + [string]$args[0]
     Write-Host "Opened $url in browser"
     & $Chrome $url
 }
 
 function New-OpenW3SearchInBrowser {
-    $url = $Env:W3_SEARCH + $($args[0])
-    if ($args[1]) {
-        $url = $url + '%20' + $($args[1])
+    $url = $Env:W3_SEARCH + [string]$args[0]
+    if ($args.Length -gt 1) {
+        $url = $url + '%20' + [string]$args[1]
     }
     Write-Host "Opened $url in browser"
     & $Chrome $url
