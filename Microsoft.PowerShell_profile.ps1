@@ -30,7 +30,7 @@ New-Alias -name t -value New-OpenTerminologyInBrowser -description "Open termino
 New-Alias -name w -value New-OpenW3SearchInBrowser -description "Open w3 search in browser" -option ReadOnly
 
 ## Search
-New-Alias -name baidu -value New-Baidu -description "Baidu" -option ReadOnly
+New-Alias -name b -value New-Baidu -description "Baidu" -option ReadOnly
 New-Alias -name bing -value New-Bing -description "Bing" -option ReadOnly
 New-Alias -name can -value New-CanIUse -description "Baidu" -option ReadOnly
 New-Alias -name id -value New-WorkItem -description "Work item" -option ReadOnly

@@ -38,7 +38,7 @@ function Start-Up {
         w [keyword] - 'Open w3 search in browser'
 
     Search:
-        baidu [keywords] - 'Search keywords using Baidu'
+        b [keywords] - 'Search keywords using Baidu'
         bing [keywords] - 'Search keywords using Bing'
         can [word] - 'Can I Use'
         id - 'Work item'
