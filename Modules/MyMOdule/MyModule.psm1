@@ -1,6 +1,5 @@
 $ProjectsFolder = "D:\Projects"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
-$LocalIP = "$Env:LocalIP"
 $Chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
@@ -17,22 +16,16 @@ function Start-Up {
         log - 'Logging Events'
         clearlog - 'Clear Event Logs'
 
-    VMs:
-        u1 - 'Logon Ubuntu 1 machine'
-        u2 - 'Logon Ubuntu 2 machine'
-
     Network:
-        ab - 'Connect to work network'
-        sz - 'Connect to internet'
+        workwifi - 'Connect to work network'
         wifi - 'Show current wifi'
         ee - 'Enable Ethernet'
         de - 'Disable Ethernet'
 
     Sites:
-        azure - 'Azure Portal'
+        w3 - 'W3 Portal'
+        codehub - 'CodeHub'
         github - 'Github'
-        gitlab - 'Gitlab'
-        mail - 'Mail'
         open [url] - 'Open url in browser'
         t [terminology] - 'Open terminology in browser'
         w [keyword] - 'Open w3 search in browser'
@@ -41,7 +34,6 @@ function Start-Up {
         b [keywords] - 'Search keywords using Baidu'
         bing [keywords] - 'Search keywords using Bing'
         can [word] - 'Can I Use'
-        id - 'Work item'
         g [keywords] - 'Search keywords using Google'
         s [keywords] - 'Search keywords usering StackOverflow'
 
@@ -77,7 +69,7 @@ function Start-EventViewer {
 }
 
 function Start-LoggingEvents {
-    Get-Eventlog -LogName Application -Newest *$args[0]* -Source *$args[1]* | Select-Object Index, EntryType, InstanceId, Message | format-list
+    Get-Eventlog -LogName Application -Newest $args[0] | Select-Object Index, EntryType, InstanceId, Message | format-list
 }
 
 function Start-ClearEventLogs () {
@@ -86,19 +78,11 @@ function Start-ClearEventLogs () {
     & Clear-EventLog "System"
 }
 
-## Workstations
-function  Start-LogonUbuntu1 {
-    ssh u1
-}
-
-function  Start-LogonUbuntu2 {
-    ssh u2
-}
-
 
 ## Network
 function Start-ConnectToWorkNetwork {
     $currentWifi = Start-ShowCurrentWifiNetwork
+    $tryCount = 0;
     if ($currentWifi -match "$Env:WorkNetworkName") {
         Write-Host "Already connected."
     }
@@ -109,38 +93,18 @@ function Start-ConnectToWorkNetwork {
         do {
             Write-Host "." -NoNewline
             Start-Sleep -Milliseconds 10
-
+            $tryCount = $tryCount + 1
             $currentWifi = Start-ShowCurrentWifiNetwork
             $wifi = Get-NetAdapter -physical | Select-Object Name, Status, Speed | Where-Object Name -eq "Wi-Fi"
-        } while ($currentWifi -notmatch "$Env:WorkNetworkName" -or $wifi.Status -ne 'Up')
+        } while ($currentWifi -notmatch "$Env:WorkNetworkName" -or $wifi.Status -ne 'Up' -and $tryCount -lt 50)
 
-        Write-Host ""
-        Write-Host "Network switched to: $Env:WorkNetworkName"
-        Get-NetAdapter -physical | Where-Object Name -eq  "Wi-Fi"
-    }
-}
-
-function Start-ConnectToInternet {
-    $currentWifi = Start-ShowCurrentWifiNetwork
-    if ($currentWifi -match "$Env:InternetName") {
-        Write-Host "Already connected."
-    }
-    else {
-        $result = netsh wlan connect name="$Env:InternetName"
-
-        Write-Host "Connecting..." -NoNewline
-
-        do {
-            Write-Host "." -NoNewline
-            Start-Sleep -Milliseconds 10
-
-            $currentWifi = Start-ShowCurrentWifiNetwork
-            $wifi = Get-NetAdapter -physical | Select-Object Name, Status, Speed | Where-Object Name -eq "Wi-Fi"
-        } while ($currentWifi -notmatch "$Env:InternetName" -or $wifi.Status -ne 'Up')
-
-        Write-Host ""
-        Write-Host "Network switched to: $Env:InternetName"
-        Get-NetAdapter -physical | Where-Object Name -eq  "Wi-Fi"
+        if ($currentWifi -match "$Env:WorkNetworkName") {
+            Write-Host "`nNetwork switched to: $Env:WorkNetworkName"
+            Get-NetAdapter -physical | Where-Object Name -eq  "Wi-Fi"
+        }
+        else {
+            Write-Host "`nFailed to connect: $Env:WorkNetworkName"
+        }
     }
 }
 
@@ -160,28 +124,22 @@ function Start-DisableEthernet {
 
 
 ## Sites
-function New-AzurePortal {
-    $url = "https://portal.azure.com/"
+function New-W3Portal {
+    $url = "http://w3.huawei.com/"
     & $Chrome $url
-    Write-Host "Azure Portal opened in Chrome."
+    Write-Host "W3 Portal opened in Chrome."
+}
+
+function New-Codehub {
+    $url = "https://codehub-g.huawei.com/workspace/projects"
+    & $Chrome $url
+    Write-Host "CodeHub opened in Chrome."
 }
 
 function New-Github {
     $url = "https://github.com/"
     & $Chrome $url
     Write-Host "Github opened in Chrome."
-}
-
-function New-Gitlab {
-    $url1 = $Env:GitlabPath
-    & $Chrome $url1
-    Write-Host "Gitlab opened in Chrome."
-}
-
-function New-Mail {
-    $url = "https://outlook.office.com/mail/inbox"
-    & $Chrome $url
-    Write-Host "Mail opened in Chrome."
 }
 
 function New-OpenUrlInBrowser {
@@ -223,12 +181,6 @@ function New-CanIUse {
     Write-Host "Can I use $($args[0]) ?"
     $url = "http://caniuse.com/#search=$($args[0])"
     & $Chrome $url
-}
-
-function New-WorkItem {
-    $url = $Env:JiraPath + $args[0]
-    & $Chrome $url
-    Write-Host "Workd item opened in Chrome."
 }
 
 function New-Google {

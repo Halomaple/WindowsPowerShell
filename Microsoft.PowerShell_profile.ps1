@@ -9,22 +9,16 @@ New-Alias -name ev -value Start-EventViewer -description "Open Event Viewer" -op
 New-Alias -name log -value Start-LoggingEvents -description "Logging Events" -option ReadOnly
 New-Alias -name clearlog -value Start-ClearEventLogs -description "Clear Event Logs" -option ReadOnly
 
-## VMs
-New-Alias -name u1 -value Start-LogonUbuntu1 -description "Logon Ubuntu 1 machine" -option ReadOnly
-New-Alias -name u2 -value Start-LogonUbuntu2 -description "Logon Ubuntu 2 machine" -option ReadOnly
-
 ## Network
-New-Alias -name ab -value Start-ConnectToWorkNetwork -description "Work network wifi" -option ReadOnly
-New-Alias -name sz -value Start-ConnectToInternet -description "Internet wifi" -option ReadOnly
+New-Alias -name workwifi -value Start-ConnectToWorkNetwork -description "Work network wifi" -option ReadOnly
 New-Alias -name wifi -value Start-ShowCurrentWifiNetwork -description "Show current wifi" -option ReadOnly
 New-Alias -name ee -value Start-EnableEthernet -description "Enable Ethernet" -option ReadOnly
 New-Alias -name de -value Start-DisableEthernet -description "Disable Ethernet" -option ReadOnly
 
 ## Sites
-New-Alias -name azure -value New-AzurePortal -description "Azure Portal" -option ReadOnly
-New-Alias -name gitlab -value New-Gitlab -description "Gitlab" -option ReadOnly
+New-Alias -name w3 -value New-W3Portal -description "W3 Portal" -option ReadOnly
+New-Alias -name codehub -value New-CodeHub -description "CodeHub" -option ReadOnly
 New-Alias -name github -value New-Github -description "Github" -option ReadOnly
-New-Alias -name mail -value New-Mail -description "Mail" -option ReadOnly
 New-Alias -name open -value New-OpenUrlInBrowser -description "Open url in browser" -option ReadOnly
 New-Alias -name t -value New-OpenTerminologyInBrowser -description "Open terminology in browser" -option ReadOnly
 New-Alias -name w -value New-OpenW3SearchInBrowser -description "Open w3 search in browser" -option ReadOnly
@@ -33,7 +27,6 @@ New-Alias -name w -value New-OpenW3SearchInBrowser -description "Open w3 search 
 New-Alias -name b -value New-Baidu -description "Baidu" -option ReadOnly
 New-Alias -name bing -value New-Bing -description "Bing" -option ReadOnly
 New-Alias -name can -value New-CanIUse -description "Baidu" -option ReadOnly
-New-Alias -name id -value New-WorkItem -description "Work item" -option ReadOnly
 New-Alias -name g -value New-Google -description "Google" -option ReadOnly
 New-Alias -name s -value New-StackOverflow -description "StackOverflow" -option ReadOnly
 
