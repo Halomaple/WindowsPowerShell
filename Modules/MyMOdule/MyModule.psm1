@@ -1,6 +1,12 @@
 $ProjectsFolder = "D:\Projects"
+$OneboxFolder = "D:\Onebox"
+$DefaultBookmarksPath = "~/AppData/Local/Google/Chrome/User Data/Default/Bookmarks"
+$Profile2BookmarksPath = "~/AppData/Local/Google/Chrome/User Data/Profile 2/"
+$HuaweiBrowserDefaultBookmarksPath = "~/AppData/Local/Huawei/HuaweiBrowser/User Data/Default/"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
 $Chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+$W3_TERMINOLOGY_URL = "https://3ms.huawei.com/terminology/#/main/termSearch?searchValue="
+$W3_SEARCH_URL = "https://w3.huawei.com/unisearch/index.html?keyword=%E6%B2%88%E8%85%BE%2000813569#lang=zh&newKeyword="
 
 
 function Start-Up {
@@ -34,17 +40,22 @@ function Start-Up {
         b [keywords] - 'Search keywords using Baidu'
         bing [keywords] - 'Search keywords using Bing'
         can [word] - 'Can I Use'
+        di [word] - 'Youdao Dict'
         g [keywords] - 'Search keywords using Google'
         s [keywords] - 'Search keywords usering StackOverflow'
 
     Misc:
         ca - 'Cat file content in Unicode format'
+        co - 'Copy default bookmarks to Onebox'
+        c2 - 'Copy default bookmarks to Profile 2'
+        ch - 'Copy default bookmarks to Huawei Browser'
         d - 'Download file'
         dm - 'Download multiple files'
         commands - 'Show Commands'
         clipc - 'Clip Current Path'
         k - 'Kill process'
         ll - 'List items'
+        battery - 'Battery Report'
         hibernate - 'Hibernate computer'
         rst - 'Restart computer'
         stc - 'Shutdown computer'
@@ -149,13 +160,13 @@ function New-OpenUrlInBrowser {
 }
 
 function New-OpenTerminologyInBrowser {
-    $url = $Env:TERMINOLOGY + [string]$args[0]
+    $url = $W3_TERMINOLOGY_URL + [string]$args[0]
     Write-Host "Opened $url in browser"
     & $Chrome $url
 }
 
 function New-OpenW3SearchInBrowser {
-    $url = $Env:W3_SEARCH + [string]$args[0]
+    $url = $W3_SEARCH_URL + [string]$args[0]
     if ($args.Length -gt 1) {
         $url = $url + '%20' + [string]$args[1]
     }
@@ -183,6 +194,12 @@ function New-CanIUse {
     & $Chrome $url
 }
 
+function New-YoudaoDict {
+    Write-Host "Youdao Dict $($args[0]) ?"
+    $url = "https://dict.youdao.com/result?word=$($args[0])&lang=en"
+    & $Chrome $url
+}
+
 function New-Google {
     Write-Host "Searched keywords using Google."
     $url = "http://www.google.com/search?q=$args"
@@ -199,6 +216,22 @@ function New-StackOverflow {
 ## Misc
 function Start-CatFileContent {
     Get-Content $args[0] -Encoding UTF8
+}
+
+function Start-CopyDefaultBookmarksToOnebox {
+    cp $DefaultBookmarksPath $OneboxFolder
+    Write-Host "$DefaultBookmarksPath has been copied to $OneboxFolder"
+}
+
+function Start-CopyDefaultBookmarksToProfile2 {
+    ## ii $Profile2BookmarksPath
+    cp $DefaultBookmarksPath $Profile2BookmarksPath
+    Write-Host "$DefaultBookmarksPath has been copied to $Profile2BookmarksPath"
+}
+
+function Start-CopyDefaultBookmarksToHuaweiBrowserDefault {
+    cp $DefaultBookmarksPath $HuaweiBrowserDefaultBookmarksPath
+    Write-Host "$DefaultBookmarksPath has been copied to $HuaweiBrowserDefaultBookmarksPath"
 }
 
 function Start-DownloadFile {
@@ -230,9 +263,17 @@ function Start-ListItems {
     }
 }
 
+function Start-BatteryReport {
+    Set-Location $ProjectsFolder
+    & powercfg /batteryreport
+    $url = "$($ProjectsFolder)\battery-report.html"
+    & $Chrome $url
+}
+
 function Start-HibernateComputer {
     & shutdown /h
 }
+
 function Start-RestartComputer {
     if ($args[0]) {
         & shutdown /r /t $args[0]

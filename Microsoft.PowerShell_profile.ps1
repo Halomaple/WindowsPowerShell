@@ -27,17 +27,22 @@ New-Alias -name w -value New-OpenW3SearchInBrowser -description "Open w3 search 
 New-Alias -name b -value New-Baidu -description "Baidu" -option ReadOnly
 New-Alias -name bing -value New-Bing -description "Bing" -option ReadOnly
 New-Alias -name can -value New-CanIUse -description "Baidu" -option ReadOnly
+New-Alias -name di -value New-YoudaoDict -description "Youdao Dict" -option ReadOnly
 New-Alias -name g -value New-Google -description "Google" -option ReadOnly
 New-Alias -name s -value New-StackOverflow -description "StackOverflow" -option ReadOnly
 
 ## Misc
 New-Alias -name ca -value Start-CatFileContent -description "Cat file content" -option ReadOnly
+New-Alias -name co -value Start-CopyDefaultBookmarksToOnebox -description "Copy default bookmarks to Onebox" -option ReadOnly
+New-Alias -name c2 -value Start-CopyDefaultBookmarksToProfile2 -description "Copy default bookmarks to Profile 2" -option ReadOnly
+New-Alias -name ch -value Start-CopyDefaultBookmarksToHuaweiBrowserDefault -description "Copy default bookmarks to Huawei Browser" -option ReadOnly
 New-Alias -name d -value Start-DownloadFile -description "Download file" -option ReadOnly
 New-Alias -name dm -value Start-DownloadMultipleFiles -description "Download multiple files" -option ReadOnly
 New-Alias -name commands -value Start-ShowCommands -description "Show Commands" -option ReadOnly
 New-Alias -name clipc -value Start-ClipCurrentPath -description "Clip Current Path" -option ReadOnly
 New-Alias -name k -value Start-KillProcess -description "Kill process" -option ReadOnly
 New-Alias -name ll -value Start-ListItems -description "List items" -option ReadOnly
+New-Alias -name battery -value Start-BatteryReport -description "Battery Report" -option ReadOnly
 New-Alias -name hibernate -value Start-HibernateComputer -description "Hibernate computer" -option ReadOnly
 New-Alias -name rst -value Start-RestartComputer -description "Restart computer" -option ReadOnly
 New-Alias -name stc -value Start-ShutdownComputer -description "Shutdown computer" -option ReadOnly
