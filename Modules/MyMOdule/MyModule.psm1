@@ -239,6 +239,9 @@ function Start-SyncOneboxBookmarksAllBrowsers {
     cp "$OneboxFolder/Bookmarks" $DefaultBookmarksPath
     cp "$OneboxFolder/Bookmarks" $Profile2BookmarksPath
     cp "$OneboxFolder/Bookmarks" $HuaweiBrowserDefaultBookmarksPath
+    Write-Host "$OneboxFolder/Bookmarks has been copied to " $DefaultBookmarksPath
+    Write-Host "$OneboxFolder/Bookmarks has been copied to " $Profile2BookmarksPath
+    Write-Host "$OneboxFolder/Bookmarks has been copied to " $HuaweiBrowserDefaultBookmarksPath
 }
 
 function Start-DownloadFile {
