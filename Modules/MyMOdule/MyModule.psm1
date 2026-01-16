@@ -44,12 +44,14 @@ function Start-Up {
         g [keywords] - 'Search keywords using Google'
         s [keywords] - 'Search keywords usering StackOverflow'
 
-    Misc:
-        ca - 'Cat file content in Unicode format'
+    Sync files:
         sbo - 'Sync default bookmarks to Onebox'
         sb2 - 'Sync default bookmarks to Profile 2'
         sbh - 'Sync default bookmarks to Huawei Browser'
         sboa - 'Sync Onebox bookmarks to All'
+
+    Misc:
+        ca - 'Cat file content in Unicode format'
         d - 'Download file'
         dm - 'Download multiple files'
         commands - 'Show Commands'
@@ -213,12 +215,7 @@ function New-StackOverflow {
     Write-Host "StackOverflow opened in Chrome."
 }
 
-
-## Misc
-function Start-CatFileContent {
-    Get-Content $args[0] -Encoding UTF8
-}
-
+## Sync files
 function Start-SyncDefaultBookmarksToOnebox {
     cp $DefaultBookmarksPath $OneboxFolder
     Write-Host "$DefaultBookmarksPath has been copied to $OneboxFolder"
@@ -242,6 +239,11 @@ function Start-SyncOneboxBookmarksAllBrowsers {
     Write-Host "$OneboxFolder/Bookmarks has been copied to " $DefaultBookmarksPath
     Write-Host "$OneboxFolder/Bookmarks has been copied to " $Profile2BookmarksPath
     Write-Host "$OneboxFolder/Bookmarks has been copied to " $HuaweiBrowserDefaultBookmarksPath
+}
+
+## Misc
+function Start-CatFileContent {
+    Get-Content $args[0] -Encoding UTF8
 }
 
 function Start-DownloadFile {
