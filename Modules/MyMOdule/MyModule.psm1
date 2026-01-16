@@ -46,9 +46,10 @@ function Start-Up {
 
     Misc:
         ca - 'Cat file content in Unicode format'
-        co - 'Copy default bookmarks to Onebox'
-        c2 - 'Copy default bookmarks to Profile 2'
-        ch - 'Copy default bookmarks to Huawei Browser'
+        sbo - 'Sync default bookmarks to Onebox'
+        sb2 - 'Sync default bookmarks to Profile 2'
+        sbh - 'Sync default bookmarks to Huawei Browser'
+        sboa - 'Sync Onebox bookmarks to All'
         d - 'Download file'
         dm - 'Download multiple files'
         commands - 'Show Commands'
@@ -218,20 +219,26 @@ function Start-CatFileContent {
     Get-Content $args[0] -Encoding UTF8
 }
 
-function Start-CopyDefaultBookmarksToOnebox {
+function Start-SyncDefaultBookmarksToOnebox {
     cp $DefaultBookmarksPath $OneboxFolder
     Write-Host "$DefaultBookmarksPath has been copied to $OneboxFolder"
 }
 
-function Start-CopyDefaultBookmarksToProfile2 {
+function Start-SyncDefaultBookmarksToProfile2 {
     ## ii $Profile2BookmarksPath
     cp $DefaultBookmarksPath $Profile2BookmarksPath
     Write-Host "$DefaultBookmarksPath has been copied to $Profile2BookmarksPath"
 }
 
-function Start-CopyDefaultBookmarksToHuaweiBrowserDefault {
+function Start-SyncDefaultBookmarksToHuaweiBrowserDefault {
     cp $DefaultBookmarksPath $HuaweiBrowserDefaultBookmarksPath
     Write-Host "$DefaultBookmarksPath has been copied to $HuaweiBrowserDefaultBookmarksPath"
+}
+
+function Start-SyncOneboxBookmarksAllBrowsers {
+    cp "$OneboxFolder/Bookmarks" $DefaultBookmarksPath
+    cp "$OneboxFolder/Bookmarks" $Profile2BookmarksPath
+    cp "$OneboxFolder/Bookmarks" $HuaweiBrowserDefaultBookmarksPath
 }
 
 function Start-DownloadFile {

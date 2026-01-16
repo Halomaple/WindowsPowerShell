@@ -33,9 +33,10 @@ New-Alias -name s -value New-StackOverflow -description "StackOverflow" -option 
 
 ## Misc
 New-Alias -name ca -value Start-CatFileContent -description "Cat file content" -option ReadOnly
-New-Alias -name co -value Start-CopyDefaultBookmarksToOnebox -description "Copy default bookmarks to Onebox" -option ReadOnly
-New-Alias -name c2 -value Start-CopyDefaultBookmarksToProfile2 -description "Copy default bookmarks to Profile 2" -option ReadOnly
-New-Alias -name ch -value Start-CopyDefaultBookmarksToHuaweiBrowserDefault -description "Copy default bookmarks to Huawei Browser" -option ReadOnly
+New-Alias -name sbo -value Start-SyncDefaultBookmarksToOnebox -description "Sync default bookmarks to Onebox" -option ReadOnly
+New-Alias -name sb2 -value Start-SyncDefaultBookmarksToProfile2 -description "Sync default bookmarks to Profile 2" -option ReadOnly
+New-Alias -name sbh -value Start-SyncDefaultBookmarksToHuaweiBrowserDefault -description "Sync default bookmarks to Huawei Browser" -option ReadOnly
+New-Alias -name sboa -value Start-SyncOneboxBookmarksAllBrowsers -description "Sync Onebox bookmarks to All" -option ReadOnly
 New-Alias -name d -value Start-DownloadFile -description "Download file" -option ReadOnly
 New-Alias -name dm -value Start-DownloadMultipleFiles -description "Download multiple files" -option ReadOnly
 New-Alias -name commands -value Start-ShowCommands -description "Show Commands" -option ReadOnly
