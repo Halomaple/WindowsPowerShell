@@ -1,8 +1,8 @@
 $ProjectsFolder = "D:\Projects"
 $OneboxFolder = "D:\Onebox"
 $DefaultBookmarksPath = "~/AppData/Local/Google/Chrome/User Data/Default/Bookmarks"
-$Profile2BookmarksPath = "~/AppData/Local/Google/Chrome/User Data/Profile 2/"
-$HuaweiBrowserDefaultBookmarksPath = "~/AppData/Local/Huawei/HuaweiBrowser/User Data/Default/"
+$Profile2BookmarksPath = "~/AppData/Local/Google/Chrome/User Data/Profile 2"
+$HuaweiBrowserDefaultBookmarksPath = "~/AppData/Local/Huawei/HuaweiBrowser/User Data/Default"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
 $Chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 $W3_TERMINOLOGY_URL = "https://3ms.huawei.com/terminology/#/main/termSearch?searchValue="
@@ -46,8 +46,11 @@ function Start-Up {
 
     Sync files:
         sbo - 'Sync default bookmarks to Onebox'
+        dbo - 'Delete bookmarks in Onebox'
         sb2 - 'Sync default bookmarks to Profile 2'
+        db2 - 'Delete bookmarks in Profile 2'
         sbh - 'Sync default bookmarks to Huawei Browser'
+        dbh - 'Delete bookmarks in Huawei Browser'
         sboa - 'Sync Onebox bookmarks to All'
 
     Misc:
@@ -221,15 +224,29 @@ function Start-SyncDefaultBookmarksToOnebox {
     Write-Host "$DefaultBookmarksPath has been copied to $OneboxFolder"
 }
 
+function Start-DeleteBookmarksInOnebox {
+    rm "$OneboxFolder/Bookmarks"
+    Write-Host "$OneboxFolder/Bookmarks has been deleted"
+}
+
 function Start-SyncDefaultBookmarksToProfile2 {
-    ## ii $Profile2BookmarksPath
     cp $DefaultBookmarksPath $Profile2BookmarksPath
     Write-Host "$DefaultBookmarksPath has been copied to $Profile2BookmarksPath"
+}
+
+function Start-DeleteBookmarksInProfile2 {
+    rm "$Profile2BookmarksPath/Bookmarks"
+    Write-Host "$Profile2BookmarksPath/Bookmarks has been deleted"
 }
 
 function Start-SyncDefaultBookmarksToHuaweiBrowserDefault {
     cp $DefaultBookmarksPath $HuaweiBrowserDefaultBookmarksPath
     Write-Host "$DefaultBookmarksPath has been copied to $HuaweiBrowserDefaultBookmarksPath"
+}
+
+function Start-DeleteBookmarksInHuaweiBrowserDefault {
+    rm "$HuaweiBrowserDefaultBookmarksPath/Bookmarks"
+    Write-Host "$HuaweiBrowserDefaultBookmarksPath/Bookmarks has been deleted"
 }
 
 function Start-SyncOneboxBookmarksAllBrowsers {

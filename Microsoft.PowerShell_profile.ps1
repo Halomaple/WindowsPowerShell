@@ -33,8 +33,11 @@ New-Alias -name s -value New-StackOverflow
 
 ## Sync files
 New-Alias -name sbo -value Start-SyncDefaultBookmarksToOnebox
+New-Alias -name dbo -value Start-DeleteBookmarksInOnebox
 New-Alias -name sb2 -value Start-SyncDefaultBookmarksToProfile2
+New-Alias -name db2 -value Start-DeleteBookmarksInProfile2
 New-Alias -name sbh -value Start-SyncDefaultBookmarksToHuaweiBrowserDefault
+New-Alias -name dbh -value Start-DeleteBookmarksInHuaweiBrowserDefault
 New-Alias -name sboa -value Start-SyncOneboxBookmarksAllBrowsers
 
 ## Misc
